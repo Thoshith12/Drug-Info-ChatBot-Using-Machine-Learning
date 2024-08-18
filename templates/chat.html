@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot UI</title>
+    <link rel="stylesheet" href="/static/dolo.css">
+</head>
+
+<body>
+    <nav>
+        <ul>PharmaHints</ul>
+        <li>Login</li>
+    </nav>
+    <div class="chat-container" id="chat-container">
+        <div class="chat" id="chat"></div>
+        <div class="input-container" id="input-container">
+            <input onchange="sendMessage()" type="text" id="messageInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- <div id="chat-container">
+        <div id="chat-messages"></div>
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div> -->
+
+    <script>
+        var result = '';
+        function sendMessage() {
+            var message = document.getElementById('messageInput').value;
+
+            //var message = messageInput.value;
+
+            if (message.trim() !== '') {
+                var chat = document.getElementById('chat');
+
+                var messageDiv = document.createElement('div');
+                messageDiv.className = 'message1';
+                messageDiv.textContent = message;
+
+                chat.appendChild(messageDiv);
+                messageInput.value = '';
+
+                // Scroll to the bottom of the chat
+                chat.scrollTop = chat.scrollHeight;
+
+                // Simulate receiving a message after a short delay
+                setTimeout(function () {
+                    //receiveMessage("This is a reply from server.");
+
+                    var m = JSON.stringify({ message: message });
+                    console.log(m);
+                    fetch('/rasa', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: m
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            result = data.message;
+                            receiveMessage(result, data.intent, data.entity);
+
+                        });
+
+
+                }, 100);
+            }
+
+
+            //appendMessage("You: " + message);
+            //document.getElementById('user-input').value = '';
+        }
+        var data = "";
+        function receiveMessage(message, intent, entity) {
+            data = message;
+            var chat = document.getElementById('chat');
+
+            var messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            var s = '';
+            if (typeof (message) == "string") {
+                console.log("string");
+                if (intent == 'drug_reactions' || intent == 'drug_interactions') {
+                    s = '';
+                    var mgs = message.split(',');
+                    for (var k = 0; k < mgs.length; k++)
+                        s += (mgs[k] + '<br>');
+                }
+                else {
+                    s = message;
+                }
+
+
+            }
+            else {
+                console.log("array");
+                //var mgs = message[0].split(' ');
+                var mgs = message;
+                var start = 1;
+                if (intent == 'drug_info' || intent == 'drug_prescriptions')
+                    start = 0;
+                for (var k = start; k < mgs.length; k++) {
+                    if (typeof (mgs[k]) == "string") {
+                        s += (mgs[k] + '<br>');
+                    }
+                    else {
+                        for (var y = 0; y < mgs[k].length; y++) {
+                            s += (mgs[k][y] + '<br>');
+                        }
+                    }
+
+                }
+            }
+            console.log(s)
+            if (intent == undefined) {
+                messageDiv.innerHTML = `${s}`;
+            }
+            else {
+                var prefix = '';
+                switch (intent) {
+                    case 'drug_info': prefix = 'The drug info requested about ' + entity + ' is:'; break;
+                    case 'drug_reactions': prefix = 'The drug reactions of  ' + entity + '  are:'; break;
+                    case 'drug_prescriptions': prefix = 'The drug prescription type of ' + entity + ' is:'; break;
+                    case 'drug_interactions': prefix = 'The drug interactions to be avoided with ' + entity + '  are:'; break;
+                    case 'drug_food_interaction': prefix = 'The food interactions of ' + entity + '  are:'; break;
+                    case 'drug_absorbability': prefix = 'Absorption of ' + entity + ' is:'; break;
+                    case 'drug_toxicity': prefix = 'Toxicity of ' + entity + ' is:'; break;
+                    case 'drug_protein_binding': prefix = 'Protein Binding of ' + entity + ' is:'; break;
+                }
+                messageDiv.innerHTML = `${prefix} <br> ${s}`;
+            }
+
+
+            chat.appendChild(messageDiv);
+
+            // Scroll to the bottom of the chat
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        // Simulate an initial received message
+        window.onload = function () {
+            receiveMessage("Hello! How can I help you?");
+        };
+
+    </script>
+
+</body>
+
+</html>

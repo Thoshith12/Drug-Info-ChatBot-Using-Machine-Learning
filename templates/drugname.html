@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to our website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://detox.net/wp-content/uploads/detox-shutter523388575-prescription-bottles-min.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            margin-top: -50px;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            /* Adjusted margin */
+            width: 40%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to our website</h1>
+    <div class="container">
+        <h2>Enter the drug name</h2>
+        <form>
+            <input type="text" name="drugName" id="drugName" placeholder="Enter drug name...">
+            <br>
+            <a href="druginfo.html"><input type="button" value="Submit"
+                    style="margin-top: 30px; background-color: #4CAF50;"></a>
+        </form>
+    </div>
+</body>
+
+</html>

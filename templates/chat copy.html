@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    FDA API Demo - Results
+{% endblock %}
+
+{% block content %}
+    <h1>Chatbot</h1>
+    <div id="chat-container">
+        <div id="chat-messages"></div>
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        var result='';
+        function sendMessage() {
+            var message = document.getElementById('user-input').value;
+            appendMessage("You: " + message);
+            document.getElementById('user-input').value = '';
+            var m=JSON.stringify({message: message});
+            console.log(m);
+            fetch('/rasa', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: m 
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                result=data.message 
+                appendMessage("Bot: " + data.message);
+            });
+        }
+
+        function appendMessage(message) {
+            var chatMessages = document.getElementById('chat-messages');
+            var messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            chatMessages.appendChild(messageElement);
+        }
+    </script>
+{% endblock %}

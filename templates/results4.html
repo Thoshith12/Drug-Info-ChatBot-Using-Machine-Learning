@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    FDA API Demo - Results
+{% endblock %}
+
+{% block content %}
+    <h1>Drug prescription</h1>
+    <div class="row">
+        <div class="col">
+            <ul>
+                
+                  <li>{{ prescription_types }}</li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <pre>
+            Over-the-Counter (OTC) Medications:
+
+OTC medications are drugs that can be purchased directly by consumers without a prescription from a healthcare professional.
+These drugs are typically used to treat minor health conditions such as headaches, colds, allergies, and indigestion.
+They are considered safe for use without direct medical supervision, although it's important for individuals to carefully read and follow the instructions on the label.
+Examples of OTC medications include aspirin, ibuprofen, cough syrups, antacids, allergy medications, and topical creams for minor skin irritations.
+
+        </pre>
+    </div>
+
+    <div class="card">
+        <pre>
+        Prescription Medications:
+
+Prescription medications are drugs that can only be obtained with a written prescription from a licensed healthcare provider, such as a doctor or nurse practitioner.
+These drugs are typically used to treat more serious health conditions or conditions that require a specific diagnosis and treatment plan.
+Prescription medications are often more potent and may have more significant side effects compared to OTC medications.
+They require supervision by a healthcare professional to ensure they are used safely and effectively.
+Examples of prescription medications include antibiotics, antidepressants, blood pressure medications, and certain pain relievers.\
+        </pre>
+    </div>
+{% endblock %}

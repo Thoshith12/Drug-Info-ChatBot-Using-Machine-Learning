@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    FDA API Demo - Results
+{% endblock %}
+
+{% block content %}
+<h1>Drug Information</h1>
+<div class="row">
+    {% for info in drug_info %}
+        <div class="col-md-4">
+            <h2>{{ info.medicinal_product }}</h2>
+            <p><strong>Brand Name:</strong> {{ info.brand_name }}</p>
+            <p><strong>Generic Name:</strong> {{ info.generic_name }}</p>
+            <p><strong>Manufacturer:</strong> {{ info.manufacturer }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

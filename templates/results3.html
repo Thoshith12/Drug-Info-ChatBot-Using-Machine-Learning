@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    FDA API Demo - Results
+{% endblock %}
+
+{% block content %}
+    <h1>Drug Interactions for {{drug_name}}</h1>
+    <div>
+        <ul>
+        
+        {% for interaction in drug_interactions %}
+            <span class="alert">{{ interaction }} </span>
+        {% endfor %}
+
+    </ul>
+    </div>
+{% endblock %}

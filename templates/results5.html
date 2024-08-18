@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    FDA API Demo - Results
+{% endblock %}
+
+{% block content %}
+    <h1>Drug Information</h1>
+    <div class="row">
+        {% for info in drug_info %}
+            <div class="col-md-2">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        {{ info.medicinal_product }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Brand Name: {{ info.brand_name }}</h5>
+                        <p class="card-text"><strong>Generic Name:</strong> {{ info.generic_name }}</p>
+                        <p class="card-text"><strong>Manufacturer:</strong> {{ info.manufacturer }}</p>
+                        <p class="card-text"><strong>Route of Administration:</strong> {{ info.route_of_administration }}</p>
+                        <p class="card-text"><strong>Dosage Form:</strong> {{ info.dosage_form }}</p>
+                        <h6>Reactions:</h6>
+                        <ul class="list-group">
+                            {% for reaction in reactions %}
+                                <li class="list-group-item">{{ reaction }}</li>
+                            {% endfor %}
+                        </ul>
+                        <h6 class="mt-3">Adverse Events:</h6>
+                        <ul class="list-group">
+                            {% for event in adverse_events %}
+                                <li class="list-group-item">{{ event }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

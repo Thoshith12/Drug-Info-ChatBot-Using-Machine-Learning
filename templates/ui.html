@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/ui.css" />
+    <title>PharmaHints Drug Search</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <a href="#home">
+                <li>Home</li>
+            </a>
+            <a href="#about">
+                <li>About</li>
+            </a>
+            <a href="#enter">
+                <li>Search</li>
+            </a>
+            <li>ChatBot</li>
+            <li id="login">Login</li>
+        </ul>
+    </nav>
+    <header id="home">
+        <h1 id="heading">PharmaHints Drug Search</h1>
+        <h4>Navigate Your Health Journey with Chat Excellence</h4>
+    </header>
+    <main id="enter">
+        <input id="drug" class="input" placeholder="search by your drug name....." type="text" name="" id="" />
+        <div class="dropdown-header" ,class="show" onclick="toggleDropdown()">Choose Data type</div>
+        <div id="dropdown-options" class="cartPage">
+            <div class="dropdown-option" onclick="test(this.innerHTML)">Drug Info</div>
+            <div class="dropdown-option" onclick="reactions(this.innerHTML)">Drug Reactions(side-effects)</div>
+            <div class="dropdown-option" onclick="interaction(this.innerHTML)">Drug-Drug Interactions</div>
+            <div class="dropdown-option" onclick="prescription(this.innerHTML)">Prescription-Type</div>
+            <div class="dropdown-option" onclick="dropDown(this.innerHTML)">All available data</div>
+        </div>
+    </main>
+    <div class="display"></div>
+    <footer id="about" class="about">
+        <p>Currently We are only providing Drug data from Open FDA API</p>
+        <p>Please use generic names to search for better results</p>
+        <p>Contact Us</p>
+        <p>Phone no.xxxxxxxxxx</p>
+        <p>E-mail:xyz@gmail.com</p>
+    </footer>
+    <!-- JQUERY -->
+    <!-- JQuery / This gives access to the jquery library -->
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap Popper / Popper is required for bootstrap 4 JS functionality -->
+    <!-- Bootstrap Popper / Popper is required for bootstrap 4 JS functionality -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <!-- Bootstrap JS plugin / This makes bootstrap 4 JS work -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script src="../static/ui.js"></script>
+</body>
+
+</html>

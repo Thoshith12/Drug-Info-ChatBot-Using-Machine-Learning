@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot UI</title>
+    <link rel="stylesheet" href="dolo.css">
+</head>
+
+<body>
+    <nav>
+        <ul>PharmaHints</ul>
+        <li>Login</li>
+    </nav>
+    <div class="chat-container" id="chat-container">
+        <div class="chat" id="chat"></div>
+        <div class="input-container" id="input-container">
+            <input onchange="sendMessage()" type="text" id="messageInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script src="dolo.js"></script>
+</body>
+
+</html>

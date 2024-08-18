@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    FDA API Demo - Home
+{% endblock %}
+
+{% block content %}
+    <h1>Drug Search</h1>
+    <form method="POST" action="/results">
+        <div class="form-group">
+            <label for="drug_name">Enter Drug Name:</label>
+            <input type="text" class="form-control" id="drug_name" name="drug_name" required>
+        </div>
+        <div class="form-group">
+            <label for="drug_type">Drug Info Type:</label>
+            <select class="form-control" id="drug_type" name="drug_type" required>
+                <option value="1">Drug Info</option>
+                <option value="2">Drug Reactions(side-effects)</option>
+                <option value="3">Drug-Drug Interactions</option>
+                <option value="6">toxicity</option>          
+                <option value="7">absorption</option>          
+                <option value="8">Food Interaction</option>   
+                <option value="9">protein-binding</option>   
+                
+
+                <option value="4">Prescription-Type</option>
+                <option value="5">All available data</option>       
+
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-primary" href="chat">Chat</a>
+    </form>
+{% endblock %}
